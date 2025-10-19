@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>摄影作品集 - 作品</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#f8f8f8",
+              secondary: "#000000",
+              accent: "#666666",
+            },
+            fontFamily: {
+              sans: ["Helvetica Neue", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .image-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          grid-gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+          .image-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 2rem;
+          }
+        }
+        @media (min-width: 1024px) {
+          .image-grid {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-gap: 2.5rem;
+          }
+        }
+        .img-container {
+          @apply relative overflow-hidden cursor-pointer transition-all duration-300;
+        }
+        .img-container:hover .img-overlay {
+          @apply opacity-100;
+        }
+        .img-container:hover img {
+          @apply scale-105;
+        }
+        .img-overlay {
+          @apply absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300;
+        }
+        .nav-item {
+          @apply text-black text-sm tracking-widest hover:text-gray-500 transition-colors duration-300;
+        }
+        .project-title {
+          @apply text-white text-lg opacity-0 transform translate-y-4 transition-all duration-300;
+        }
+        .img-container:hover .project-title {
+          @apply opacity-100 translate-y-0;
+        }
+        .filter-active {
+          @apply bg-black text-white;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-primary text-secondary min-h-screen">
+    <!-- Header Navigation -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm py-6 px-6 md:px-12 shadow-sm"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <a
+          href="index.html"
+          class="text-xl md:text-2xl font-light tracking-tighter"
+        >
+          <span class="font-normal">PHOTOGRAPHY</span>
+        </a>
+
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="nav-item">HOME</a>
+          <a href="projects.html" class="nav-item border-b border-black pb-1"
+            >PROJECTS</a
+          >
+          <a href="about.html" class="nav-item">ABOUT</a>
+          <a href="contact.html" class="nav-item">CONTACT</a>
+        </nav>
+
+        <button class="md:hidden text-black text-xl" id="menuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation (Hidden by default) -->
+    <div
+      id="mobileNav"
+      class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 md:hidden"
+    >
+      <div class="flex justify-end p-6">
+        <button id="closeNav" class="text-black text-2xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col items-center space-y-8 mt-16">
+        <a
+          href="index.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >HOME</a
+        >
+        <a
+          href="projects.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >PROJECTS</a
+        >
+        <a
+          href="about.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >ABOUT</a
+        >
+        <a
+          href="contact.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >CONTACT</a
+        >
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+      <!-- Projects Section -->
+      <section class="px-6 md:px-12">
+        <div class="container mx-auto">
+          <div class="mb-12 md:mb-20">
+            <h1 class="text-3xl md:text-5xl font-light tracking-tight">
+              Photography Projects
+            </h1>
+          </div>
+
+          <!-- Project Filters -->
+          <div class="flex flex-wrap gap-3 mb-12">
+            <button
+              class="px-4 py-2 text-xs md:text-sm border border-gray-300 hover:bg-black hover:text-white transition-colors filter-active"
+            >
+              All
+            </button>
+            <button
+              class="px-4 py-2 text-xs md:text-sm border border-gray-300 hover:bg-black hover:text-white transition-colors"
+            >
+              Landscapes
+            </button>
+            <button
+              class="px-4 py-2 text-xs md:text-sm border border-gray-300 hover:bg-black hover:text-white transition-colors"
+            >
+              Portraits
+            </button>
+            <button
+              class="px-4 py-2 text-xs md:text-sm border border-gray-300 hover:bg-black hover:text-white transition-colors"
+            >
+              Urban
+            </button>
+            <button
+              class="px-4 py-2 text-xs md:text-sm border border-gray-300 hover:bg-black hover:text-white transition-colors"
+            >
+              Abstract
+            </button>
+            <button
+              class="px-4 py-2 text-xs md:text-sm border border-gray-300 hover:bg-black hover:text-white transition-colors"
+            >
+              Documentary
+            </button>
+          </div>
+
+          <!-- Projects Grid -->
+          <div class="image-grid">
+            <!-- Project 1 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj1/800/600"
+                alt="Mountain Vistas"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Mountain Vistas</span>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj2/800/1000"
+                alt="Urban Solitude"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Urban Solitude</span>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj3/800/500"
+                alt="Coastal Dreams"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Coastal Dreams</span>
+              </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj4/800/800"
+                alt="Faces of the City"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Faces of the City</span>
+              </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj5/800/600"
+                alt="Desert Landscapes"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Desert Landscapes</span>
+              </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj6/800/1200"
+                alt="Architectural Forms"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Architectural Forms</span>
+              </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj7/800/500"
+                alt="Natural Abstractions"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Natural Abstractions</span>
+              </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="img-container">
+              <img
+                src="https://picsum.photos/seed/proj8/800/600"
+                alt="Night Photography"
+                class="w-full h-auto object-cover transition-transform duration-700"
+              />
+              <div class="img-overlay">
+                <span class="project-title">Night Photography</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Load More Button -->
+          <div class="mt-16 text-center">
+            <button
+              class="px-8 py-3 border border-gray-300 text-sm tracking-wider hover:bg-black hover:text-white transition-colors"
+            >
+              LOAD MORE PROJECTS
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 border-t border-gray-200">
+      <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <p class="text-gray-500 text-sm">
+              &copy; 2023 Photography Portfolio. All rights reserved.
+            </p>
+          </div>
+          <div class="flex space-x-8">
+            <a
+              href="#"
+              class="text-gray-500 hover:text-black text-sm transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 hover:text-black text-sm transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 hover:text-black text-sm transition-colors"
+              >Back to Top</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Project Viewer Modal -->
+    <div
+      id="projectViewer"
+      class="fixed inset-0 bg-black bg-opacity-98 z-50 hidden items-center justify-center p-4"
+    >
+      <button
+        id="closeViewer"
+        class="absolute top-6 right-6 text-white text-2xl hover:text-gray-400 transition-colors z-10"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <button
+        id="prevProject"
+        class="absolute left-6 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-400 transition-colors z-10"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button
+        id="nextProject"
+        class="absolute right-6 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-400 transition-colors z-10"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <div class="max-w-6xl w-full">
+        <img
+          id="viewerImage"
+          src=""
+          alt="Project Image"
+          class="max-h-[85vh] mx-auto object-contain"
+        />
+        <h3 id="viewerTitle" class="text-white text-xl mt-6 text-center"></h3>
+        <p
+          id="viewerDescription"
+          class="text-gray-400 mt-2 text-center max-w-2xl mx-auto"
+        ></p>
+      </div>
+    </div>
+
+    <script>
+      // Mobile Navigation Toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const closeBtn = document.getElementById("closeNav");
+      const mobileNav = document.getElementById("mobileNav");
+
+      menuBtn.addEventListener("click", () => {
+        mobileNav.classList.remove("translate-x-full");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeBtn.addEventListener("click", () => {
+        mobileNav.classList.add("translate-x-full");
+        document.body.style.overflow = "auto";
+      });
+
+      // Filter buttons functionality
+      const filterButtons = document.querySelectorAll(
+        ".filter-active, button.px-4.py-2.text-xs"
+      );
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove("filter-active"));
+          // Add active class to clicked button
+          button.classList.add("filter-active");
+        });
+      });
+
+      // Project Viewer Functionality
+      const projectViewer = document.getElementById("projectViewer");
+      const viewerImage = document.getElementById("viewerImage");
+      const viewerTitle = document.getElementById("viewerTitle");
+      const viewerDescription = document.getElementById("viewerDescription");
+      const closeViewer = document.getElementById("closeViewer");
+      const prevProject = document.getElementById("prevProject");
+      const nextProject = document.getElementById("nextProject");
+      const imgContainers = document.querySelectorAll(".img-container");
+
+      // Project data with descriptions
+      const projectData = [
+        {
+          title: "Mountain Vistas",
+          image: "https://picsum.photos/seed/proj1/1200/800",
+          description:
+            "A collection of landscape photographs capturing the majestic beauty of mountain ranges across North America.",
+        },
+        {
+          title: "Urban Solitude",
+          image: "https://picsum.photos/seed/proj2/1200/1500",
+          description:
+            "Exploring the concept of isolation within urban environments through candid street photography.",
+        },
+        {
+          title: "Coastal Dreams",
+          image: "https://picsum.photos/seed/proj3/1200/800",
+          description:
+            "Documenting the ever-changing relationship between land and sea along various coastal regions.",
+        },
+        {
+          title: "Faces of the City",
+          image: "https://picsum.photos/seed/proj4/1200/1200",
+          description:
+            "A portrait series featuring diverse individuals who contribute to the unique character of metropolitan life.",
+        },
+        {
+          title: "Desert Landscapes",
+          image: "https://picsum.photos/seed/proj5/1200/800",
+          description:
+            "Capturing the stark beauty and surprising diversity of desert ecosystems around the world.",
+        },
+        {
+          title: "Architectural Forms",
+          image: "https://picsum.photos/seed/proj6/1200/1800",
+          description:
+            "Exploring the interplay of light, shadow, and geometry in modern and historical architecture.",
+        },
+        {
+          title: "Natural Abstractions",
+          image: "https://picsum.photos/seed/proj7/1200/800",
+          description:
+            "Finding abstract compositions within natural elements, revealing patterns often overlooked.",
+        },
+        {
+          title: "Night Photography",
+          image: "https://picsum.photos/seed/proj8/1200/800",
+          description:
+            "A study of how artificial and natural light transforms familiar scenes after dark.",
+        },
+      ];
+
+      let currentProjectIndex = 0;
+
+      // Open project viewer
+      imgContainers.forEach((container, index) => {
+        container.addEventListener("click", () => {
+          currentProjectIndex = index;
+          const project = projectData[index];
+          viewerImage.src = project.image;
+          viewerTitle.textContent = project.title;
+          viewerDescription.textContent = project.description;
+          projectViewer.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      // Close project viewer
+      closeViewer.addEventListener("click", () => {
+        projectViewer.style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+
+      // Navigate to previous project
+      prevProject.addEventListener("click", (e) => {
+        e.stopPropagation();
+        currentProjectIndex =
+          (currentProjectIndex - 1 + projectData.length) % projectData.length;
+        const project = projectData[currentProjectIndex];
+        viewerImage.src = project.image;
+        viewerTitle.textContent = project.title;
+        viewerDescription.textContent = project.description;
+      });
+
+      // Navigate to next project
+      nextProject.addEventListener("click", (e) => {
+        e.stopPropagation();
+        currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
+        const project = projectData[currentProjectIndex];
+        viewerImage.src = project.image;
+        viewerTitle.textContent = project.title;
+        viewerDescription.textContent = project.description;
+      });
+
+      // Close viewer when clicking outside image
+      projectViewer.addEventListener("click", (e) => {
+        if (e.target === projectViewer) {
+          projectViewer.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (projectViewer.style.display === "flex") {
+          if (e.key === "Escape") {
+            projectViewer.style.display = "none";
+            document.body.style.overflow = "auto";
+          } else if (e.key === "ArrowLeft") {
+            currentProjectIndex =
+              (currentProjectIndex - 1 + projectData.length) %
+              projectData.length;
+            const project = projectData[currentProjectIndex];
+            viewerImage.src = project.image;
+            viewerTitle.textContent = project.title;
+            viewerDescription.textContent = project.description;
+          } else if (e.key === "ArrowRight") {
+            currentProjectIndex =
+              (currentProjectIndex + 1) % projectData.length;
+            const project = projectData[currentProjectIndex];
+            viewerImage.src = project.image;
+            viewerTitle.textContent = project.title;
+            viewerDescription.textContent = project.description;
+          }
+        }
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("py-4");
+          header.classList.remove("py-6");
+        } else {
+          header.classList.add("py-6");
+          header.classList.remove("py-4");
+        }
+      });
+    </script>
+  </body>
+</html>

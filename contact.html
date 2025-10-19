@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>摄影作品集 - 联系</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#f8f8f8",
+              secondary: "#000000",
+              accent: "#666666",
+            },
+            fontFamily: {
+              sans: ["Helvetica Neue", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .nav-item {
+          @apply text-black text-sm tracking-widest hover:text-gray-500 transition-colors duration-300;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-primary text-secondary min-h-screen">
+    <!-- Header Navigation -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm py-6 px-6 md:px-12 shadow-sm"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <a
+          href="index.html"
+          class="text-xl md:text-2xl font-light tracking-tighter"
+        >
+          <span class="font-normal">PHOTOGRAPHY</span>
+        </a>
+
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="nav-item">HOME</a>
+          <a href="projects.html" class="nav-item">PROJECTS</a>
+          <a href="about.html" class="nav-item">ABOUT</a>
+          <a href="contact.html" class="nav-item border-b border-black pb-1"
+            >CONTACT</a
+          >
+        </nav>
+
+        <button class="md:hidden text-black text-xl" id="menuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation (Hidden by default) -->
+    <div
+      id="mobileNav"
+      class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 md:hidden"
+    >
+      <div class="flex justify-end p-6">
+        <button id="closeNav" class="text-black text-2xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col items-center space-y-8 mt-16">
+        <a
+          href="index.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >HOME</a
+        >
+        <a
+          href="projects.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >PROJECTS</a
+        >
+        <a
+          href="about.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >ABOUT</a
+        >
+        <a
+          href="contact.html"
+          class="text-black text-xl tracking-widest hover:text-gray-500 transition-colors"
+          >CONTACT</a
+        >
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+      <!-- Contact Section -->
+      <section class="py-20 px-6 md:px-12">
+        <div class="container mx-auto max-w-4xl">
+          <h2 class="text-3xl md:text-4xl font-light mb-12">Contact</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <form class="space-y-6">
+                <div>
+                  <label for="name" class="block text-sm mb-2 text-gray-600"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full bg-transparent border border-gray-300 px-4 py-3 text-black focus:outline-none focus:border-black transition-colors"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm mb-2 text-gray-600"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full bg-transparent border border-gray-300 px-4 py-3 text-black focus:outline-none focus:border-black transition-colors"
+                  />
+                </div>
+                <div>
+                  <label for="message" class="block text-sm mb-2 text-gray-600"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="6"
+                    class="w-full bg-transparent border border-gray-300 px-4 py-3 text-black focus:outline-none focus:border-black transition-colors"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full py-3 border border-gray-300 text-sm tracking-wider hover:bg-black hover:text-white transition-colors"
+                >
+                  SEND MESSAGE
+                </button>
+              </form>
+            </div>
+
+            <div class="flex flex-col justify-center">
+              <div class="mb-12">
+                <h3 class="text-xl font-light mb-6">Contact Information</h3>
+                <ul class="space-y-4">
+                  <li class="flex items-center">
+                    <i class="fas fa-envelope text-gray-500 mr-4"></i>
+                    <span>contact@photography.com</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-phone text-gray-500 mr-4"></i>
+                    <span>+1 (555) 123-4567</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-map-marker-alt text-gray-500 mr-4 mt-1"
+                    ></i>
+                    <span>123 Photography Street, New York, NY 10001</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-light mb-6">Follow Me</h3>
+                <div class="flex space-x-6">
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-black transition-colors text-xl"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-black transition-colors text-xl"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-black transition-colors text-xl"
+                  >
+                    <i class="fab fa-facebook"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-black transition-colors text-xl"
+                  >
+                    <i class="fab fa-behance"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 border-t border-gray-200">
+      <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <p class="text-gray-500 text-sm">
+              &copy; 2023 Photography Portfolio. All rights reserved.
+            </p>
+          </div>
+          <div class="flex space-x-8">
+            <a
+              href="#"
+              class="text-gray-500 hover:text-black text-sm transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 hover:text-black text-sm transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 hover:text-black text-sm transition-colors"
+              >Back to Top</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Navigation Toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const closeBtn = document.getElementById("closeNav");
+      const mobileNav = document.getElementById("mobileNav");
+
+      menuBtn.addEventListener("click", () => {
+        mobileNav.classList.remove("translate-x-full");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeBtn.addEventListener("click", () => {
+        mobileNav.classList.add("translate-x-full");
+        document.body.style.overflow = "auto";
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("py-4");
+          header.classList.remove("py-6");
+        } else {
+          header.classList.add("py-6");
+          header.classList.remove("py-4");
+        }
+      });
+    </script>
+  </body>
+</html>
